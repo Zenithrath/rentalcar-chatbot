@@ -1,0 +1,72 @@
+.section { padding: 90px 24px; max-width: 1200px; margin: 0 auto; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 280px 280px;
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #0C4A6E;
+}
+
+.card:focus-visible { outline: 3px solid var(--cp); outline-offset: 3px; }
+.featured { grid-column: span 2; }
+
+.photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+  display: block;
+}
+.card:hover .photo { transform: scale(1.06); }
+
+.overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(7,30,48,.88) 0%, rgba(7,30,48,.3) 50%, transparent 100%);
+  display: flex; align-items: flex-end;
+  padding: 24px;
+  transition: background .3s ease;
+}
+.card:hover .overlay {
+  background: linear-gradient(to top, rgba(7,30,48,.92) 0%, rgba(7,30,48,.4) 55%, transparent 100%);
+}
+
+.overlayContent {}
+
+.name {
+  font-family: var(--fd); font-weight: 700; font-size: 1.3rem;
+  color: #fff; line-height: 1.2; margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.featured .name { font-size: 1.7rem; }
+.sub { font-size: .82rem; color: rgba(255,255,255,.75); }
+
+.tag {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff; padding: 5px 14px; border-radius: 100px;
+  font-size: .78rem; font-weight: 600;
+  border: 1px solid rgba(255,255,255,.3);
+  transition: background .2s ease;
+}
+.card:hover .tag { background: rgba(234,88,12,.8); border-color: transparent; }
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .featured { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .featured { grid-column: span 1; }
+  .card { height: 220px; }
+  .featured { height: 260px; }
+  .featured .name { font-size: 1.4rem; }
+}
